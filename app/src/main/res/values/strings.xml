@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tic Tac Toe</string>
+    <string name="x_o_bg">x-o-bg</string>
+    <string name="o_s_move">O\'s Move</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="mode">Mode</string>
+    <string name="button_text">reset</string>
+    <string name="o_wins">o-wins</string>
+</resources>
