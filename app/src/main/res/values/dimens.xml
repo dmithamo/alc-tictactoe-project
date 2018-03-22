@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="pading_shape_bg">50dp</dimen>
-    <dimen name="button_padding_sides">16dp</dimen>
+    <dimen name="button_padding_sides">8dp</dimen>
+    <dimen name="box_size">80dp</dimen>
+    <dimen name="margin_box">0dp</dimen>
+    <dimen name="elevation">8dp</dimen>
+    <dimen name="btn_margin_btm">16dp</dimen>
+    <dimen name="score_box_size">30dp</dimen>
+    <dimen name="score_text_size">14sp</dimen>
 </resources>

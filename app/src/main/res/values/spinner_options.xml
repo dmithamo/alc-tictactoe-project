@@ -2,9 +2,9 @@
 <resources>
     <!--Options for Mode selection Spinner-->
     <string-array name="modes">
-        <item>One-Player as X</item>
-        <item>One-Player as O</item>
-        <item>Two-Player</item>
+        <item>ONE-PLAYER AS X</item>
+        <item>ONE-PLAYER AS O</item>
+        <item>TWO-PLAYER</item>
     </string-array>
 
     <!--Options for Difficulty selection spinner-->
