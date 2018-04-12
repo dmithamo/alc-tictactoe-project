@@ -5,86 +5,32 @@
     android:layout_height="match_parent"
     tools:context="com.example.dennis.tictactoe.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/dropdown_bg"
-        android:elevation="@dimen/elevation"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:padding="4dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mode"
-            android:textAllCaps="true"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/text_color" />
-
-        <Spinner
-            android:id="@+id/game-mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"></Spinner>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/difficulty"
-            android:textAllCaps="true"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/text_color" />
-
-        <Spinner
-            android:id="@+id/game-difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"></Spinner>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/whose-move"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/settings"
-        android:gravity="center_horizontal"
-        android:padding="8dp"
-        android:text="@string/o_s_move"
-        android:textAllCaps="true"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@color/text_color"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/boxes_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/whose-move"
+        android:layout_marginTop="@dimen/btn_margin_btm"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:layout_marginEnd="@dimen/margin_box"
             android:layout_marginStart="@dimen/margin_box"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
     </LinearLayout>
@@ -99,22 +45,22 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:layout_marginEnd="@dimen/margin_box"
             android:layout_marginStart="@dimen/margin_box"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
     </LinearLayout>
@@ -129,25 +75,40 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:layout_marginEnd="@dimen/margin_box"
             android:layout_marginStart="@dimen/margin_box"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:layout_width="@dimen/box_size"
-            android:layout_height="@dimen/box_size"
+            android:layout_width="@dimen/box_size_three"
+            android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/whose-move"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/boxes_3"
+        android:layout_marginTop="@dimen/btn_margin_btm"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="@string/o_s_move"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/text_color"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/scores"
@@ -176,7 +137,7 @@
             android:layout_height="@dimen/score_box_size"
             android:background="@drawable/dropdown_bg"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/_0"
             android:textAllCaps="true"
             android:textColor="@color/text_color"
             android:textSize="@dimen/score_text_size"
@@ -186,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="draws"
+            android:text="@string/draws"
             android:textAllCaps="true"
             android:textColor="@color/text_color"
             android:textSize="@dimen/score_text_size"
@@ -199,7 +160,7 @@
             android:layout_height="@dimen/score_box_size"
             android:background="@drawable/dropdown_bg"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/_0"
             android:textAllCaps="true"
             android:textColor="@color/text_color"
             android:textSize="@dimen/score_text_size"
@@ -209,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="x-wins"
+            android:text="@string/x_wins"
             android:textAllCaps="true"
             android:textColor="@color/text_color"
             android:textSize="@dimen/score_text_size"
@@ -222,13 +183,14 @@
             android:layout_height="@dimen/score_box_size"
             android:background="@drawable/dropdown_bg"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/_0"
             android:textAllCaps="true"
             android:textColor="@color/text_color"
             android:textSize="@dimen/score_text_size"
             android:textStyle="bold" />
 
     </LinearLayout>
+
 
     <Button
         android:id="@+id/reset"

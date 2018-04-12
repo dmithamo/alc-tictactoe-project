@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:context="com.example.dennis.tictactoe.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/btn_margin_btm"
+        android:background="@drawable/button_bg"
+        android:elevation="@dimen/elevation"
+        android:onClick="loadThreeByThree"
+        android:text="@string/three_by_three"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/btn_margin_btm"
+        android:background="@drawable/button_bg"
+        android:elevation="@dimen/elevation"
+        android:onClick="loadFiveByFive"
+        android:text="@string/five_by_five"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
