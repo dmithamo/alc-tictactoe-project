@@ -318,6 +318,7 @@
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#fff"
+        android:onClick="resetGame"
         android:textStyle="bold" />
 
 </RelativeLayout>

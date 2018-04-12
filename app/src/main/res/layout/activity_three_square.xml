@@ -203,6 +203,7 @@
         android:elevation="@dimen/elevation"
         android:text="@string/button_text"
         android:textAllCaps="true"
+        android:onClick="resetGame"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#fff"
         android:textStyle="bold" />
