@@ -4,7 +4,7 @@
     <string name="x_s_move">X\'s Move</string>
     <string name="difficulty">Difficulty</string>
     <string name="mode">Mode</string>
-    <string name="button_text">reset</string>
+    <string name="reset_button_text">reset</string>
     <string name="o_wins">o-wins</string>
     <string name="_0">0</string>
     <string name="draws">draws</string>

@@ -119,6 +119,23 @@
         android:textColor="@color/text_color"
         android:textStyle="bold" />
 
+
+    <Button
+        android:id="@+id/restartGame"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/whose-move"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/btn_margin_btm"
+        android:background="@drawable/button_bg"
+        android:elevation="@dimen/elevation"
+        android:onClick="restartGame"
+        android:text="restart"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:id="@+id/scores"
         android:layout_width="match_parent"
@@ -210,7 +227,7 @@
         android:layout_marginBottom="@dimen/btn_margin_btm"
         android:background="@drawable/button_bg"
         android:elevation="@dimen/elevation"
-        android:text="@string/button_text"
+        android:text="@string/reset_button_text"
         android:textAllCaps="true"
         android:onClick="resetGame"
         android:textAppearance="?android:textAppearanceMedium"

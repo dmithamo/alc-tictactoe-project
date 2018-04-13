@@ -16,6 +16,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preload);
     }
 
+
+    //    Inflate 3 x 3 layout if selected
+    public void loadThreeByThree(View view) {
+        setContentView(R.layout.activity_three_square);
+//        Make array of al boxes
+        collectAllBoxes();
+
+//        Call playerOne's method
+        playerOne();
+    }
+
+
     public ImageView[] collectAllBoxes() {
         //    Collect all boxes into an array, set click listener on each
 //        Row 1
@@ -41,49 +53,101 @@ public class MainActivity extends AppCompatActivity {
         return allBoxes;
     }
 
-    //    Inflate 3 x 3 layout if selected
-    public void loadThreeByThree(View view) {
-        setContentView(R.layout.activity_three_square);
-//        Make array of al boxes
-        collectAllBoxes();
-
-//        Call playerOne's method
-        playerOneR();
-    }
-
 
     //    Player One's move
-    public void playerOneR() {
+    public void playerOne() {
+//        Check if the Game is over
+        boolean gameOver = checkGameOver();
 //        Refer to boxes array
         ImageView[] allBoxes = collectAllBoxes();
-        for (final ImageView box : allBoxes) {
-            box.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (box.getDrawable() == null) {
-                        box.setImageResource(R.drawable.x);
-                        playerTwo();
+
+        if (gameOver) {
+
+
+        } else {
+            for (final ImageView box : allBoxes) {
+                box.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (box.getDrawable() == null) {
+                            box.setImageResource(R.drawable.x);
+                            playerTwo();
+                        }
                     }
-                }
-            });
+                });
+            }
+
         }
+
     }
 
     //    Player Two's move
     public void playerTwo() {
-//        Refer to boxes array
-        ImageView[] allBoxes = collectAllBoxes();
-        for (final ImageView box : allBoxes) {
-            box.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (box.getDrawable() == null) {
-                        box.setImageResource(R.drawable.o);
-                        playerOneR();
+//        Check if game is over
+        boolean gameOver = checkGameOver();
+
+        if (gameOver) {
+
+        } else {
+            //        Refer to boxes array
+            ImageView[] allBoxes = collectAllBoxes();
+            for (final ImageView box : allBoxes) {
+                box.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (box.getDrawable() == null) {
+                            box.setImageResource(R.drawable.o);
+                            playerOne();
+                        }
                     }
-                }
-            });
+                });
+            }
+
         }
+
+    }
+
+    public boolean checkGameOver() {
+
+        //        check whether playerOne has won
+        boolean playerOneWin = checkPlayerOneWin();
+
+        //        check whether playerOne has won
+        boolean playerTwoWin = checkPlayerTwoWin();
+
+        //        Check stalemate (draw)
+        boolean draw = checkDraw();
+
+        if (playerOneWin || playerTwoWin || draw) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkPlayerOneWin() {
+        return false;
+    }
+
+    public boolean checkPlayerTwoWin() {
+        return false;
+    }
+
+    public boolean checkDraw() {
+//        ImageView[] allBoxes = collectAllBoxes();
+        boolean isADraw = false;
+//        for(final ImageView box : allBoxes){
+//
+//            // If any box is as yet unfilled, the game is not yet over
+//            if(box.getDrawable() == null){
+//                isADraw = false;
+//            }
+//            // If there are no empty boxes
+//            else {
+//                isADraw = true;
+//            }
+//        }
+        return isADraw;
     }
 
     //    Inflate 5 x 5 layout if selected
@@ -100,4 +164,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void restartGame(View view) {
+    }
 }

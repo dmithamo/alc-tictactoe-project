@@ -314,7 +314,7 @@
         android:layout_marginBottom="@dimen/btn_margin_btm"
         android:background="@drawable/button_bg"
         android:elevation="@dimen/elevation"
-        android:text="@string/button_text"
+        android:text="@string/reset_button_text"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#fff"
