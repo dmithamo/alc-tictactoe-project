@@ -217,7 +217,7 @@
         android:layout_marginTop="@dimen/o_btm_margin"
         android:gravity="center_horizontal"
         android:padding="8dp"
-        android:text="@string/o_s_move"
+        android:text="@string/x_s_move"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@color/text_color"
