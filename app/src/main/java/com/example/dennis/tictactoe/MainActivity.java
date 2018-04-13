@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,37 +14,76 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preload);
-
     }
 
-    //    Inflate 5 x 5 layout if selected
+    public ImageView[] collectAllBoxes() {
+        //    Collect all boxes into an array, set click listener on each
+//        Row 1
+        ImageView box11 = findViewById(R.id.box_11);
+        ImageView box12 = findViewById(R.id.box_12);
+        ImageView box13 = findViewById(R.id.box_13);
+
+        //        Row 2
+        ImageView box21 = findViewById(R.id.box_21);
+        ImageView box22 = findViewById(R.id.box_22);
+        ImageView box23 = findViewById(R.id.box_23);
+
+        //        Row 3
+        ImageView box31 = findViewById(R.id.box_31);
+        ImageView box32 = findViewById(R.id.box_32);
+        ImageView box33 = findViewById(R.id.box_33);
+
+        ImageView[] allBoxes = {
+                box11, box12, box13,
+                box21, box22, box23,
+                box31, box32, box33,
+        };
+        return allBoxes;
+    }
+
+    //    Inflate 3 x 3 layout if selected
     public void loadThreeByThree(View view) {
         setContentView(R.layout.activity_three_square);
+//        Make array of al boxes
+        collectAllBoxes();
+
+//        Call playerOne's method
+        playerOneR();
     }
 
-    //    Assign image resource to clicked image
-    public void playerOne(View view) {
-//    cast clicked box into an imageView
-        ImageView theBox = (ImageView) view;
-        //Draw an x inside clicked box if box is empty
-        if (theBox.getDrawable() == null) {
-            theBox.setImageResource(R.drawable.x);
 
-//            Find subscript text and change it to "O's move"
-            TextView whoseMove = findViewById(R.id.whose_move);
-            whoseMove.setText(R.string.o_s_move);
-
-        } else {
-            Toast.makeText(this, "OccupiedO! Play somewhere else!",
-                    Toast.LENGTH_SHORT).show();
+    //    Player One's move
+    public void playerOneR() {
+//        Refer to boxes array
+        ImageView[] allBoxes = collectAllBoxes();
+        for (final ImageView box : allBoxes) {
+            box.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (box.getDrawable() == null) {
+                        box.setImageResource(R.drawable.x);
+                        playerTwo();
+                    }
+                }
+            });
         }
-
     }
-
 
     //    Player Two's move
     public void playerTwo() {
-
+//        Refer to boxes array
+        ImageView[] allBoxes = collectAllBoxes();
+        for (final ImageView box : allBoxes) {
+            box.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (box.getDrawable() == null) {
+                        box.setImageResource(R.drawable.o);
+                        playerOneR();
+                    }
+                }
+            });
+        }
     }
 
     //    Inflate 5 x 5 layout if selected
@@ -60,4 +98,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
         startActivity(mIntent);
     }
+
+
 }

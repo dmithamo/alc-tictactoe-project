@@ -16,14 +16,12 @@
 
         <ImageView
             android:id="@+id/box_11"
-            android:onClick="playerOne"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_12"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
@@ -33,7 +31,6 @@
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_13"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
@@ -51,7 +48,6 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_21"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
@@ -60,7 +56,6 @@
 
         <ImageView
             android:id="@+id/box_22"
-            android:onClick="playerOne"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
             android:layout_marginEnd="@dimen/margin_box"
@@ -69,7 +64,6 @@
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_23"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
@@ -87,7 +81,6 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_31"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
@@ -95,7 +88,6 @@
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_32"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
@@ -105,7 +97,6 @@
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
-            android:onClick="playerOne"
             android:id="@+id/box_33"
             android:layout_width="@dimen/box_size_three"
             android:layout_height="@dimen/box_size_three"
