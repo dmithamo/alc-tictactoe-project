@@ -12,4 +12,5 @@
     <string name="three_by_three">3 x 3</string>
     <string name="five_by_five">5 x 5</string>
     <string name="o_s_move">O\'s Move</string>
+    <string name="restart_button_text">restart</string>
 </resources>

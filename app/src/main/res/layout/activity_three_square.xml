@@ -130,7 +130,7 @@
         android:background="@drawable/button_bg"
         android:elevation="@dimen/elevation"
         android:onClick="restartGame"
-        android:text="restart"
+        android:text="@string/restart_button_text"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#fff"

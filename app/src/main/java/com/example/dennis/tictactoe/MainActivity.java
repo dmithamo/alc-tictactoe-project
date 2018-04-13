@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
     //    Player One's move
     public void playerOne() {
+//        Indicate whose move it is
+        TextView whoseMove = findViewById(R.id.whose_move);
+        whoseMove.setText(R.string.x_s_move);
 //        Check if the Game is over
         boolean gameOver = checkGameOver();
 //        Refer to boxes array
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
     //    Player Two's move
     public void playerTwo() {
+//        Indicate whose move it is
+        TextView whoseMove = findViewById(R.id.whose_move);
+        whoseMove.setText(R.string.o_s_move);
 //        Check if game is over
         boolean gameOver = checkGameOver();
 
@@ -150,6 +157,15 @@ public class MainActivity extends AppCompatActivity {
         return isADraw;
     }
 
+    public void restartGame(View view) {
+        //        Wipe the board
+        ImageView[] allBoxes = collectAllBoxes();
+        for (final ImageView box : allBoxes) {
+            box.setImageDrawable(null);
+            playerOne();
+        }
+    }
+
     //    Inflate 5 x 5 layout if selected
     public void loadFiveByFive(View view) {
         setContentView(R.layout.activity_five_square);
@@ -164,6 +180,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void restartGame(View view) {
-    }
 }
