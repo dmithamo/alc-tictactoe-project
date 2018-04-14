@@ -2,11 +2,14 @@ package com.example.dennis.tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +55,33 @@ public class MainActivity extends AppCompatActivity {
                 box31, box32, box33,
         };
         return allBoxes;
+    }
+
+    //    Collect all possible ways a personal could win
+    public ImageView[][] collectWinningArrays() {
+
+        ImageView[] allBoxes = collectAllBoxes();
+
+//      Rows winning cases
+        ImageView[] row1 = Arrays.copyOfRange(allBoxes, 0, 3);
+        ImageView[] row2 = Arrays.copyOfRange(allBoxes, 3, 6);
+        ImageView[] row3 = Arrays.copyOfRange(allBoxes, 6, 9);
+
+//      Columns winning cases
+        ImageView[] column1 = {allBoxes[0], allBoxes[3], allBoxes[6]};
+        ImageView[] column2 = {allBoxes[1], allBoxes[4], allBoxes[5]};
+        ImageView[] column3 = {allBoxes[6], allBoxes[7], allBoxes[8]};
+
+//        Diagonal winning cases
+        ImageView[] diagonal1 = {allBoxes[0], allBoxes[4], allBoxes[8]};
+        ImageView[] diagonal2 = {allBoxes[2], allBoxes[4], allBoxes[6]};
+
+        ImageView[][] winningCases = {
+                row1, row2, row3,
+                column1, column2, column3,
+                diagonal1, diagonal2
+        };
+        return winningCases;
     }
 
 
@@ -133,7 +163,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean checkPlayerOneWin() {
-        return false;
+        boolean playerOneWin = false;
+
+        ImageView[][] winningArrays = collectWinningArrays();
+
+        // Check win by rows
+        ImageView[][] rows = Arrays.copyOfRange(winningArrays, 0, 3);
+
+        for (ImageView[] row : rows) {
+            for (ImageView box : row) {
+                if (box.getDrawable() != ResourcesCompat.getDrawable(getResources(), R.drawable.x, null)) {
+                    playerOneWin = false;
+                } else {
+                    TextView whoseMove = findViewById(R.id.whose_move);
+                    whoseMove.setText(R.string.x_won);
+                    playerOneWin = true;
+                }
+            }
+
+        }
+
+        return playerOneWin;
     }
 
     public boolean checkPlayerTwoWin() {

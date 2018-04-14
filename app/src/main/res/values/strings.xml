@@ -13,4 +13,6 @@
     <string name="five_by_five">5 x 5</string>
     <string name="o_s_move">O\'s Move</string>
     <string name="restart_button_text">restart</string>
+    <string name="game_x_won">Game Over! X Won!</string>
+    <string name="x_won">Game over! X won!</string>
 </resources>
