@@ -70,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
             box.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (checkGameOver()) {
-                        // game is over
-                    } else {
+                    if (!checkGameOver()) {
                         if (box.getDrawable() == null) {
                             box.setImageResource(R.drawable.x);
                             playerTwo();
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
             });
         }
     }
@@ -96,9 +93,7 @@ public class MainActivity extends AppCompatActivity {
             box.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (checkGameOver()) {
-                        // game is over
-                    } else {
+                    if (!checkGameOver()) {
                         if (box.getDrawable() == null) {
                             box.setImageResource(R.drawable.o);
                             playerOne();
@@ -108,18 +103,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     public boolean checkGameOver() {
         // Boolean flag depicting game status
-        // Changes to true if game is over, stopping further play
         boolean gameOver = false;
+
         //  Loop through array of winning combinations, check whether any has been satisfied
         for (ImageView[] line : winningCombinations()) {
 
             if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
-                // Figure out if the game has been won
+
+                // Figure out if the game has been won, and by who
                 if (line[0].getDrawable().getConstantState().equals(line[1].getDrawable().getConstantState())
                         && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())) {
                     gameOver = true;
@@ -130,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (!gameOver) {
             gameOver = checkDraw();
+        }
+
+        // Make boxes un-clickable once game is over
+        if (gameOver) {
+            for (ImageView box : collectAllBoxes()) {
+                box.setOnClickListener(null);
+            }
         }
 
         return gameOver;
@@ -147,16 +149,26 @@ public class MainActivity extends AppCompatActivity {
         //    Figure out who won the game
         if (box.getDrawable().getConstantState().equals(x.getConstantState())) {
             whoseMove.setText(R.string.x_won);
-        } else if (box.getDrawable().getConstantState().equals(o.getConstantState())) {
-            whoseMove.setText(R.string.x_won);
-        } else if (checkDraw()) {
-            whoseMove.setText(R.string.is_a_draw);
-        }
 
+            // Update x scores
+            TextView xScores = findViewById(R.id.x_wins);
+            int currentXScore = Integer.valueOf(xScores.getText().toString());
+            xScores.setText(Integer.toString((currentXScore + 1)));
+
+        } else if (box.getDrawable().getConstantState().equals(o.getConstantState())) {
+            whoseMove.setText(R.string.o_won);
+
+            // Update o scores
+            TextView oScores = findViewById(R.id.o_wins);
+            int currentOScore = Integer.valueOf(oScores.getText().toString());
+            oScores.setText(Integer.toString((currentOScore + 1)));
+
+        }
     }
 
     public boolean checkDraw() {
-        boolean isADraw = true; // Boolean flag changes if there exists an empty box on the board
+        // Boolean flag changes if there exists an empty box on the board
+        boolean isADraw = true;
 
         // See if there is any empty box; if any is empty, game is not over yet
         for (ImageView box : collectAllBoxes()) {
@@ -165,7 +177,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+        if (isADraw) {
+            TextView whoseMove = findViewById(R.id.whose_move);
+            whoseMove.setText(R.string.is_a_draw);
 
+            // Update draws
+            TextView draws = findViewById(R.id.draws);
+            int currentDraws = Integer.valueOf(draws.getText().toString());
+            draws.setText(Integer.toString((currentDraws + 1)));
+        }
         return isADraw;
     }
 
@@ -213,6 +233,4 @@ public class MainActivity extends AppCompatActivity {
         finish();
         startActivity(mIntent);
     }
-
-
 }
