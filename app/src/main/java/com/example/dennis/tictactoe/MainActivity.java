@@ -62,14 +62,11 @@ public class MainActivity extends AppCompatActivity {
     //    Player One's move
     public void playerOne() {
 
-        // Refer to boxes array
-        ImageView[] allBoxes = collectAllBoxes();
-
         // Indicate whose move it is
         TextView whoseMove = findViewById(R.id.whose_move);
         whoseMove.setText(R.string.x_s_move);
 
-        for (final ImageView box : allBoxes) {
+        for (final ImageView box : collectAllBoxes()) {
             box.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -91,14 +88,11 @@ public class MainActivity extends AppCompatActivity {
     //    Player Two's move
     public void playerTwo() {
 
-        // Refer to boxes array
-        ImageView[] allBoxes = collectAllBoxes();
-
         // Indicate whose move it is
         TextView whoseMove = findViewById(R.id.whose_move);
         whoseMove.setText(R.string.o_s_move);
 
-        for (final ImageView box : allBoxes) {
+        for (final ImageView box : collectAllBoxes()) {
             box.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -129,11 +123,9 @@ public class MainActivity extends AppCompatActivity {
         Drawable x = ResourcesCompat.getDrawable(getResources(), R.drawable.x, null);
         Drawable o = ResourcesCompat.getDrawable(getResources(), R.drawable.o, null);
 
-        // Generate array of winning combinations
-        ImageView[][] lines = winningCombinations();
 
         //    Loop through array of winning combinations, check whether any has been satisfied
-        for (ImageView[] line : lines) {
+        for (ImageView[] line : winningCombinations()) {
 
             if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
                 // Figure out if the game has been won
@@ -181,10 +173,9 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean checkDraw() {
         boolean isADraw = true; // Boolean flag changes if there exists an empty box on the board
-        ImageView[] allBoxes = collectAllBoxes();
 
         // See if there is any empty box; if any is empty, game is not over yet
-        for (ImageView box : allBoxes) {
+        for (ImageView box : collectAllBoxes()) {
             if (box.getDrawable() == null) {
                 isADraw = false;
                 break;
@@ -206,18 +197,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public ImageView[][] winningCombinations() {
-        //        Collect rows
+        // Collect rows
         ImageView[] row1 = copyOfRange(collectAllBoxes(), 0, 3);
         ImageView[] row2 = copyOfRange(collectAllBoxes(), 3, 6);
         ImageView[] row3 = copyOfRange(collectAllBoxes(), 6, 9);
-        //        Collect columns
+
+        // Collect columns
         ImageView[] column1 = {collectAllBoxes()[0], collectAllBoxes()[3], collectAllBoxes()[6]};
         ImageView[] column2 = {collectAllBoxes()[1], collectAllBoxes()[4], collectAllBoxes()[7]};
         ImageView[] column3 = {collectAllBoxes()[2], collectAllBoxes()[5], collectAllBoxes()[8]};
-        //        Collect diagonals
+
+        // Collect diagonals
         ImageView[] diagonalFromLeft = {collectAllBoxes()[0], collectAllBoxes()[4], collectAllBoxes()[8]};
         ImageView[] diagonalFromRight = {collectAllBoxes()[2], collectAllBoxes()[4], collectAllBoxes()[6]};
-        //        Set up array of winning combinations
+
+        // Set up array of winning combinations
         ImageView[][] winningLines = {
                 row1, row2, row3,
                 column1, column2, column3,
@@ -226,11 +220,9 @@ public class MainActivity extends AppCompatActivity {
         return winningLines;
     }
 
-
     public void restartGame(View view) {
         //        Wipe the board
-        ImageView[] allBoxes = collectAllBoxes();
-        for (ImageView box : allBoxes) {
+        for (ImageView box : collectAllBoxes()) {
             box.setImageDrawable(null);
             playerOne();
         }
