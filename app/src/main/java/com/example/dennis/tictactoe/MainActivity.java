@@ -1,6 +1,7 @@
 package com.example.dennis.tictactoe;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Arrays;
+import static java.util.Arrays.copyOfRange;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,41 +58,11 @@ public class MainActivity extends AppCompatActivity {
         return allBoxes;
     }
 
-    //    Collect all possible ways a personal could win
-    public ImageView[][] collectWinningArrays() {
-
-        ImageView[] allBoxes = collectAllBoxes();
-
-//      Rows winning cases
-        ImageView[] row1 = Arrays.copyOfRange(allBoxes, 0, 3);
-        ImageView[] row2 = Arrays.copyOfRange(allBoxes, 3, 6);
-        ImageView[] row3 = Arrays.copyOfRange(allBoxes, 6, 9);
-
-//      Columns winning cases
-        ImageView[] column1 = {allBoxes[0], allBoxes[3], allBoxes[6]};
-        ImageView[] column2 = {allBoxes[1], allBoxes[4], allBoxes[5]};
-        ImageView[] column3 = {allBoxes[6], allBoxes[7], allBoxes[8]};
-
-//        Diagonal winning cases
-        ImageView[] diagonal1 = {allBoxes[0], allBoxes[4], allBoxes[8]};
-        ImageView[] diagonal2 = {allBoxes[2], allBoxes[4], allBoxes[6]};
-
-        ImageView[][] winningCases = {
-                row1, row2, row3,
-                column1, column2, column3,
-                diagonal1, diagonal2
-        };
-        return winningCases;
-    }
-
 
     //    Player One's move
     public void playerOne() {
-//        Indicate whose move it is
-        TextView whoseMove = findViewById(R.id.whose_move);
-        whoseMove.setText(R.string.x_s_move);
 //        Check if the Game is over
-        boolean gameOver = checkGameOver();
+        final boolean gameOver = checkGameOver();
 //        Refer to boxes array
         ImageView[] allBoxes = collectAllBoxes();
 
@@ -99,14 +70,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         } else {
+            //        Indicate whose move it is
+            TextView whoseMove = findViewById(R.id.whose_move);
+            whoseMove.setText(R.string.x_s_move);
+
             for (final ImageView box : allBoxes) {
                 box.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (box.getDrawable() == null) {
-                            box.setImageResource(R.drawable.x);
-                            playerTwo();
+                        if (checkGameOver()) {
+
+                        } else {
+                            if (box.getDrawable() == null) {
+                                box.setImageResource(R.drawable.x);
+                                playerTwo();
+                            }
                         }
+
                     }
                 });
             }
@@ -117,25 +97,30 @@ public class MainActivity extends AppCompatActivity {
 
     //    Player Two's move
     public void playerTwo() {
-//        Indicate whose move it is
-        TextView whoseMove = findViewById(R.id.whose_move);
-        whoseMove.setText(R.string.o_s_move);
 //        Check if game is over
         boolean gameOver = checkGameOver();
 
         if (gameOver) {
 
         } else {
+            //        Indicate whose move it is
+            TextView whoseMove = findViewById(R.id.whose_move);
+            whoseMove.setText(R.string.o_s_move);
             //        Refer to boxes array
             ImageView[] allBoxes = collectAllBoxes();
             for (final ImageView box : allBoxes) {
                 box.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (box.getDrawable() == null) {
-                            box.setImageResource(R.drawable.o);
-                            playerOne();
+                        if (checkGameOver()) {
+
+                        } else {
+                            if (box.getDrawable() == null) {
+                                box.setImageResource(R.drawable.o);
+                                playerOne();
+                            }
                         }
+
                     }
                 });
             }
@@ -145,45 +130,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean checkGameOver() {
+//        boolean flag depicting game status
+//        Changes to true if game is over, stopping further play
+        boolean gameOver = false;
 
-        //        check whether playerOne has won
-        boolean playerOneWin = checkPlayerOneWin();
 
-        //        check whether playerOne has won
-        boolean playerTwoWin = checkPlayerTwoWin();
+        //        Reference x and o to use for checking who won
+        Drawable x = ResourcesCompat.getDrawable(getResources(), R.drawable.x, null);
+        Drawable o = ResourcesCompat.getDrawable(getResources(), R.drawable.o, null);
 
-        //        Check stalemate (draw)
-        boolean draw = checkDraw();
+        //        Collect rows
+        ImageView[] row1 = copyOfRange(collectAllBoxes(), 0, 3);
+        ImageView[] row2 = copyOfRange(collectAllBoxes(), 3, 6);
+        ImageView[] row3 = copyOfRange(collectAllBoxes(), 6, 9);
 
-        if (playerOneWin || playerTwoWin || draw) {
-            return true;
-        } else {
-            return false;
+        //        Collect columns
+        ImageView[] column1 = {collectAllBoxes()[0], collectAllBoxes()[3], collectAllBoxes()[6]};
+        ImageView[] column2 = {collectAllBoxes()[1], collectAllBoxes()[4], collectAllBoxes()[7]};
+        ImageView[] column3 = {collectAllBoxes()[2], collectAllBoxes()[5], collectAllBoxes()[8]};
+
+
+        //        Collect diagonals
+        ImageView[] diagonalFromLeft = {collectAllBoxes()[0], collectAllBoxes()[4], collectAllBoxes()[8]};
+        ImageView[] diagonalFromRight = {collectAllBoxes()[2], collectAllBoxes()[4], collectAllBoxes()[6]};
+
+
+        //        Set up array of winning combinations
+        ImageView[][] lines = {
+                row1, row2, row3,
+                column1, column2, column3,
+                diagonalFromLeft, diagonalFromRight
+        };
+
+
+        //        Loop through array of winning arrays, check whether any has been satisfied
+        for (ImageView[] line : lines) {
+
+            if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
+                if (line[0].getDrawable().getConstantState().equals(line[1].getDrawable().getConstantState())
+                        && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())) {
+                    gameOver = true;
+
+                    if (line[0].getDrawable().getConstantState().equals(x.getConstantState())) {
+                        TextView whoseMove = findViewById(R.id.whose_move);
+                        whoseMove.setText(R.string.x_won);
+
+                    } else if (line[0].getDrawable().getConstantState().equals(o.getConstantState())) {
+                        TextView whoseMove = findViewById(R.id.whose_move);
+                        whoseMove.setText(R.string.o_won);
+                    }
+                }
+            }
         }
+
+
+        return gameOver;
     }
 
     public boolean checkPlayerOneWin() {
-        boolean playerOneWin = false;
+        return false;
 
-        ImageView[][] winningArrays = collectWinningArrays();
-
-        // Check win by rows
-        ImageView[][] rows = Arrays.copyOfRange(winningArrays, 0, 3);
-
-        for (ImageView[] row : rows) {
-            for (ImageView box : row) {
-                if (box.getDrawable() != ResourcesCompat.getDrawable(getResources(), R.drawable.x, null)) {
-                    playerOneWin = false;
-                } else {
-                    TextView whoseMove = findViewById(R.id.whose_move);
-                    whoseMove.setText(R.string.x_won);
-                    playerOneWin = true;
-                }
-            }
-
-        }
-
-        return playerOneWin;
     }
 
     public boolean checkPlayerTwoWin() {
@@ -191,19 +197,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean checkDraw() {
-//        ImageView[] allBoxes = collectAllBoxes();
         boolean isADraw = false;
-//        for(final ImageView box : allBoxes){
-//
-//            // If any box is as yet unfilled, the game is not yet over
-//            if(box.getDrawable() == null){
-//                isADraw = false;
-//            }
-//            // If there are no empty boxes
-//            else {
-//                isADraw = true;
-//            }
-//        }
+
         return isADraw;
     }
 
