@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static java.util.Arrays.copyOfRange;
 
@@ -242,7 +241,7 @@ public class MainActivity2 extends AppCompatActivity {
         };
         ImageView[] diagonalFromRight = {
                 collectAllBoxes()[4], collectAllBoxes()[8], collectAllBoxes()[12],
-                collectAllBoxes()[18], collectAllBoxes()[24]
+                collectAllBoxes()[16], collectAllBoxes()[20]
         };
 
         // Set up array of winning combinations
@@ -260,12 +259,6 @@ public class MainActivity2 extends AppCompatActivity {
             box.setImageDrawable(null);
             playerOne();
         }
-    }
-
-    //    Inflate 5 x 5 layout if selected
-    public void loadFiveByFive(View view) {
-        setContentView(R.layout.activity_five_square);
-        Toast.makeText(this, "This is as yet unhandled", Toast.LENGTH_LONG).show();
     }
 
     //    Restart game on clicking RESET Button

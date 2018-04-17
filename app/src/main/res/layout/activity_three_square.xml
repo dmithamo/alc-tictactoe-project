@@ -133,7 +133,7 @@
         android:text="@string/restart_button_text"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#fff"
+        android:textColor="@color/btn_text_color"
         android:textStyle="bold" />
 
     <LinearLayout

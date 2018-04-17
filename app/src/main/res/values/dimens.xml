@@ -11,4 +11,5 @@
     <dimen name="o_btm_margin">8dp</dimen>
     <dimen name="margin_btm">2dp</dimen>
     <dimen name="btn_reset_width">120dp</dimen>
+    <dimen name="hm_btn_width">120dp</dimen>
 </resources>

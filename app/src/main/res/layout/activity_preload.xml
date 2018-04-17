@@ -9,27 +9,27 @@
     tools:context="com.example.dennis.tictactoe.MainActivity">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/hm_btn_width"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/btn_margin_btm"
         android:background="@drawable/button_bg"
         android:elevation="@dimen/elevation"
         android:onClick="loadThreeByThree"
         android:text="@string/three_by_three"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#fff"
         android:textStyle="bold" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/hm_btn_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_btm"
         android:background="@drawable/button_bg"
         android:elevation="@dimen/elevation"
         android:onClick="loadFiveByFive"
         android:text="@string/five_by_five"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#fff"
         android:textStyle="bold" />
