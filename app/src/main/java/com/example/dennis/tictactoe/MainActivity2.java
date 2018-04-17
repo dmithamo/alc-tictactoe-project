@@ -3,34 +3,25 @@ package com.example.dennis.tictactoe;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static java.util.Arrays.copyOfRange;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preload);
-    }
-
-    //    Inflate 3 x 3 layout if selected
-    public void loadThreeByThree(View view) {
-        setContentView(R.layout.activity_three_square);
+        setContentView(R.layout.activity_five_square);
+        collectAllBoxes();
         playerOne();
     }
-
-    //    Inflate 5 x 5 layout if selected
-    public void loadFiveByFive(View view) {
-        Intent fiveByFive = new Intent(this, MainActivity2.class);
-        startActivity(fiveByFive);
-    }
-
 
     public ImageView[] collectAllBoxes() {
         //    Collect all boxes into an array, set click listener on each
@@ -38,21 +29,43 @@ public class MainActivity extends AppCompatActivity {
         ImageView box11 = findViewById(R.id.box_11);
         ImageView box12 = findViewById(R.id.box_12);
         ImageView box13 = findViewById(R.id.box_13);
+        ImageView box14 = findViewById(R.id.box_14);
+        ImageView box15 = findViewById(R.id.box_15);
 
         //        Row 2
         ImageView box21 = findViewById(R.id.box_21);
         ImageView box22 = findViewById(R.id.box_22);
         ImageView box23 = findViewById(R.id.box_23);
+        ImageView box24 = findViewById(R.id.box_24);
+        ImageView box25 = findViewById(R.id.box_25);
 
         //        Row 3
         ImageView box31 = findViewById(R.id.box_31);
         ImageView box32 = findViewById(R.id.box_32);
         ImageView box33 = findViewById(R.id.box_33);
+        ImageView box34 = findViewById(R.id.box_34);
+        ImageView box35 = findViewById(R.id.box_35);
+
+        //        Row 4
+        ImageView box41 = findViewById(R.id.box_41);
+        ImageView box42 = findViewById(R.id.box_42);
+        ImageView box43 = findViewById(R.id.box_43);
+        ImageView box44 = findViewById(R.id.box_44);
+        ImageView box45 = findViewById(R.id.box_45);
+
+        //        Row 5
+        ImageView box51 = findViewById(R.id.box_51);
+        ImageView box52 = findViewById(R.id.box_52);
+        ImageView box53 = findViewById(R.id.box_53);
+        ImageView box54 = findViewById(R.id.box_54);
+        ImageView box55 = findViewById(R.id.box_55);
 
         ImageView[] allBoxes = {
-                box11, box12, box13,
-                box21, box22, box23,
-                box31, box32, box33,
+                box11, box12, box13, box14, box15,
+                box21, box22, box23, box24, box25,
+                box31, box32, box33, box34, box35,
+                box41, box42, box43, box44, box45,
+                box51, box52, box53, box54, box55,
         };
         return allBoxes;
     }
@@ -111,11 +124,15 @@ public class MainActivity extends AppCompatActivity {
         //  Loop through array of winning combinations, check whether any has been satisfied
         for (ImageView[] line : winningCombinations()) {
 
-            if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
+            if (line[0].getDrawable() != null && line[1].getDrawable() != null
+                    && line[2].getDrawable() != null && line[3].getDrawable() != null
+                    && line[4].getDrawable() != null) {
 
                 // Figure out if the game has been won, and by who
                 if (line[0].getDrawable().getConstantState().equals(line[1].getDrawable().getConstantState())
-                        && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())) {
+                        && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())
+                        && line[2].getDrawable().getConstantState().equals(line[3].getDrawable().getConstantState())
+                        && line[3].getDrawable().getConstantState().equals(line[4].getDrawable().getConstantState())) {
                     gameOver = true;
                     determineWhoWon(line[0]);
                 }
@@ -190,23 +207,48 @@ public class MainActivity extends AppCompatActivity {
 
     public ImageView[][] winningCombinations() {
         // Collect rows
-        ImageView[] row1 = copyOfRange(collectAllBoxes(), 0, 3);
-        ImageView[] row2 = copyOfRange(collectAllBoxes(), 3, 6);
-        ImageView[] row3 = copyOfRange(collectAllBoxes(), 6, 9);
+        ImageView[] row1 = copyOfRange(collectAllBoxes(), 0, 5);
+        ImageView[] row2 = copyOfRange(collectAllBoxes(), 5, 10);
+        ImageView[] row3 = copyOfRange(collectAllBoxes(), 10, 15);
+        ImageView[] row4 = copyOfRange(collectAllBoxes(), 15, 20);
+        ImageView[] row5 = copyOfRange(collectAllBoxes(), 20, 25);
 
         // Collect columns
-        ImageView[] column1 = {collectAllBoxes()[0], collectAllBoxes()[3], collectAllBoxes()[6]};
-        ImageView[] column2 = {collectAllBoxes()[1], collectAllBoxes()[4], collectAllBoxes()[7]};
-        ImageView[] column3 = {collectAllBoxes()[2], collectAllBoxes()[5], collectAllBoxes()[8]};
+        ImageView[] column1 = {
+                collectAllBoxes()[0], collectAllBoxes()[5], collectAllBoxes()[10],
+                collectAllBoxes()[15], collectAllBoxes()[20]
+        };
+        ImageView[] column2 = {
+                collectAllBoxes()[1], collectAllBoxes()[6], collectAllBoxes()[11],
+                collectAllBoxes()[16], collectAllBoxes()[21]
+        };
+        ImageView[] column3 = {
+                collectAllBoxes()[2], collectAllBoxes()[7], collectAllBoxes()[12],
+                collectAllBoxes()[17], collectAllBoxes()[22]
+        };
+        ImageView[] column4 = {
+                collectAllBoxes()[3], collectAllBoxes()[8], collectAllBoxes()[13],
+                collectAllBoxes()[18], collectAllBoxes()[23]
+        };
+        ImageView[] column5 = {
+                collectAllBoxes()[4], collectAllBoxes()[9], collectAllBoxes()[14],
+                collectAllBoxes()[19], collectAllBoxes()[24]
+        };
 
         // Collect diagonals
-        ImageView[] diagonalFromLeft = {collectAllBoxes()[0], collectAllBoxes()[4], collectAllBoxes()[8]};
-        ImageView[] diagonalFromRight = {collectAllBoxes()[2], collectAllBoxes()[4], collectAllBoxes()[6]};
+        ImageView[] diagonalFromLeft = {
+                collectAllBoxes()[0], collectAllBoxes()[6], collectAllBoxes()[12],
+                collectAllBoxes()[18], collectAllBoxes()[24]
+        };
+        ImageView[] diagonalFromRight = {
+                collectAllBoxes()[4], collectAllBoxes()[8], collectAllBoxes()[12],
+                collectAllBoxes()[18], collectAllBoxes()[24]
+        };
 
         // Set up array of winning combinations
         ImageView[][] winningLines = {
-                row1, row2, row3,
-                column1, column2, column3,
+                row1, row2, row3, row4, row5,
+                column1, column2, column3, column4, column5,
                 diagonalFromLeft, diagonalFromRight
         };
         return winningLines;
@@ -220,10 +262,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //    Inflate 5 x 5 layout if selected
+    public void loadFiveByFive(View view) {
+        setContentView(R.layout.activity_five_square);
+        Toast.makeText(this, "This is as yet unhandled", Toast.LENGTH_LONG).show();
+    }
+
     //    Restart game on clicking RESET Button
     public void resetGame(View view) {
-        Intent mIntent = getIntent();
+        Intent homepageIntent = new Intent(this, MainActivity.class);
         finish();
-        startActivity(mIntent);
+        startActivity(homepageIntent);
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dennis.tictactoe.MainActivity">
+    tools:context="com.example.dennis.tictactoe.MainActivity2">
 
 
 
@@ -16,30 +16,35 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/box_11"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_12"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_13"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_14"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_15"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
@@ -56,12 +61,14 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/box_21"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_22"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:layout_marginEnd="@dimen/margin_box"
@@ -70,18 +77,21 @@
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_23"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_24"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_25"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
@@ -98,30 +108,35 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/box_31"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_32"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_33"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_34"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_35"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
@@ -138,30 +153,35 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/box_41"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_42"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_43"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_44"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_45"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
@@ -178,30 +198,35 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/box_51"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_52"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_53"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_54"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
             android:contentDescription="@string/x_o_bg" />
 
         <ImageView
+            android:id="@+id/box_55"
             android:layout_width="@dimen/box_size_five"
             android:layout_height="@dimen/box_size_five"
             android:background="@drawable/image_bg"
