@@ -139,6 +139,36 @@ public class MainActivity extends AppCompatActivity {
         Drawable x = ResourcesCompat.getDrawable(getResources(), R.drawable.x, null);
         Drawable o = ResourcesCompat.getDrawable(getResources(), R.drawable.o, null);
 
+        // Collect array of winning combinations
+        ImageView[][] lines = winningCombinations();
+
+        //    Loop through array of winning combinations, check whether any has been satisfied
+        for (ImageView[] line : lines) {
+
+            if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
+                if (line[0].getDrawable().getConstantState().equals(line[1].getDrawable().getConstantState())
+                        && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())) {
+                    gameOver = true;
+
+
+                    //    Figure out who won the game
+                    if (line[0].getDrawable().getConstantState().equals(x.getConstantState())) {
+                        TextView whoseMove = findViewById(R.id.whose_move);
+                        whoseMove.setText(R.string.x_won);
+
+                    } else if (line[0].getDrawable().getConstantState().equals(o.getConstantState())) {
+                        TextView whoseMove = findViewById(R.id.whose_move);
+                        whoseMove.setText(R.string.o_won);
+                    }
+                }
+            }
+        }
+
+        return gameOver;
+    }
+
+    public ImageView[][] winningCombinations() {
+
         //        Collect rows
         ImageView[] row1 = copyOfRange(collectAllBoxes(), 0, 3);
         ImageView[] row2 = copyOfRange(collectAllBoxes(), 3, 6);
@@ -162,29 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 diagonalFromLeft, diagonalFromRight
         };
 
-
-        //        Loop through array of winning arrays, check whether any has been satisfied
-        for (ImageView[] line : lines) {
-
-            if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
-                if (line[0].getDrawable().getConstantState().equals(line[1].getDrawable().getConstantState())
-                        && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())) {
-                    gameOver = true;
-
-                    if (line[0].getDrawable().getConstantState().equals(x.getConstantState())) {
-                        TextView whoseMove = findViewById(R.id.whose_move);
-                        whoseMove.setText(R.string.x_won);
-
-                    } else if (line[0].getDrawable().getConstantState().equals(o.getConstantState())) {
-                        TextView whoseMove = findViewById(R.id.whose_move);
-                        whoseMove.setText(R.string.o_won);
-                    }
-                }
-            }
-        }
-
-
-        return gameOver;
+        return lines;
     }
 
     public boolean checkPlayerOneWin() {
