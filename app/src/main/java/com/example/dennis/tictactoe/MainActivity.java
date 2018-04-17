@@ -115,60 +115,44 @@ public class MainActivity extends AppCompatActivity {
         // Boolean flag depicting game status
         // Changes to true if game is over, stopping further play
         boolean gameOver = false;
-
-        // Boolean flag for which player won
-        boolean playerOneWon = false;
-        boolean playerTwoWon = false;
-        //  Reference x and o to use for checking who won
-        Drawable x = ResourcesCompat.getDrawable(getResources(), R.drawable.x, null);
-        Drawable o = ResourcesCompat.getDrawable(getResources(), R.drawable.o, null);
-
-
-        //    Loop through array of winning combinations, check whether any has been satisfied
+        //  Loop through array of winning combinations, check whether any has been satisfied
         for (ImageView[] line : winningCombinations()) {
 
             if (line[0].getDrawable() != null && line[1].getDrawable() != null && line[2].getDrawable() != null) {
                 // Figure out if the game has been won
                 if (line[0].getDrawable().getConstantState().equals(line[1].getDrawable().getConstantState())
                         && line[1].getDrawable().getConstantState().equals(line[2].getDrawable().getConstantState())) {
-
-                    //    Figure out who won the game
-                    if (line[0].getDrawable().getConstantState().equals(x.getConstantState())) {
-                        playerOneWon = true;
-
-                        TextView whoseMove = findViewById(R.id.whose_move);
-                        whoseMove.setText(R.string.x_won);
-
-                        // Update scores
-                        TextView xScore = findViewById(R.id.x_wins);
-                        int newXScore = Integer.valueOf(xScore.getText().toString());
-                        newXScore += 1;
-                        xScore.setText(Integer.toString(newXScore));
-
-                    } else if (line[0].getDrawable().getConstantState().equals(o.getConstantState())) {
-                        playerTwoWon = true;
-
-                        TextView whoseMove = findViewById(R.id.whose_move);
-                        whoseMove.setText(R.string.o_won);
-
-                        // Update scores
-                        TextView oScore = findViewById(R.id.o_wins);
-                        int newOScore = Integer.valueOf(oScore.getText().toString());
-                        newOScore += 1;
-                        oScore.setText(Integer.toString(newOScore));
-                    }
+                    gameOver = true;
+                    determineWhoWon(line[0]);
                 }
             }
         }
-        // Change game game status if any of the players has won, update scores
-        if (playerOneWon || playerTwoWon) {
-            gameOver = true;
 
-        } else {
+        if (!gameOver) {
             gameOver = checkDraw();
         }
 
         return gameOver;
+    }
+
+    public void determineWhoWon(ImageView box) {
+
+        //  Reference x and o to use for checking who won
+        Drawable x = ResourcesCompat.getDrawable(getResources(), R.drawable.x, null);
+        Drawable o = ResourcesCompat.getDrawable(getResources(), R.drawable.o, null);
+
+        // Reference the text view below board, and change the text depending on who won
+        TextView whoseMove = findViewById(R.id.whose_move);
+
+        //    Figure out who won the game
+        if (box.getDrawable().getConstantState().equals(x.getConstantState())) {
+            whoseMove.setText(R.string.x_won);
+        } else if (box.getDrawable().getConstantState().equals(o.getConstantState())) {
+            whoseMove.setText(R.string.x_won);
+        } else if (checkDraw()) {
+            whoseMove.setText(R.string.is_a_draw);
+        }
+
     }
 
     public boolean checkDraw() {
@@ -180,17 +164,6 @@ public class MainActivity extends AppCompatActivity {
                 isADraw = false;
                 break;
             }
-        }
-        // If no change to boolean flag, game is a draw...
-        if (isADraw) {
-            TextView whoseMove = findViewById(R.id.whose_move);
-            whoseMove.setText(R.string.is_a_draw);
-
-            //  Update scores
-            TextView draws = findViewById(R.id.draws);
-            int newDraws = Integer.parseInt(draws.getText().toString());
-            newDraws += 1;
-            draws.setText(Integer.toString(newDraws));
         }
 
         return isADraw;
