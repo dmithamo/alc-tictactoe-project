@@ -14,6 +14,7 @@
     <string name="o_s_move">O\'s Move</string>
     <string name="restart_button_text">restart</string>
     <string name="game_x_won">Game Over! X Won!</string>
-    <string name="o_won">Game Kaput! o won.\nTouch Restart to play again</string>
-    <string name="x_won">Game Kaput! x won.\nTouch Restart to play again</string>
+    <string name="o_won">Game Kaput! o won! Touch Restart to play again</string>
+    <string name="x_won">Game Kaput! x won! Touch Restart to play again</string>
+    <string name="is_a_draw">Game over by draw. Touch Restart to play again</string>
 </resources>
