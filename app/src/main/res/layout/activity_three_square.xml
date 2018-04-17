@@ -122,7 +122,7 @@
 
     <Button
         android:id="@+id/restartGame"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/btn_reset_width"
         android:layout_height="wrap_content"
         android:layout_below="@id/whose-move"
         android:layout_centerHorizontal="true"

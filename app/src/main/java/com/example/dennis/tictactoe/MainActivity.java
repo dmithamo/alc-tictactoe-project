@@ -61,70 +61,58 @@ public class MainActivity extends AppCompatActivity {
 
     //    Player One's move
     public void playerOne() {
-//        Check if the Game is over
-        final boolean gameOver = checkGameOver();
-//        Refer to boxes array
+
+        // Refer to boxes array
         ImageView[] allBoxes = collectAllBoxes();
 
-        if (gameOver) {
+        // Indicate whose move it is
+        TextView whoseMove = findViewById(R.id.whose_move);
+        whoseMove.setText(R.string.x_s_move);
 
-
-        } else {
-            //        Indicate whose move it is
-            TextView whoseMove = findViewById(R.id.whose_move);
-            whoseMove.setText(R.string.x_s_move);
-
-            for (final ImageView box : allBoxes) {
-                box.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (checkGameOver()) {
-
-                        } else {
-                            if (box.getDrawable() == null) {
-                                box.setImageResource(R.drawable.x);
-                                playerTwo();
-                            }
+        for (final ImageView box : allBoxes) {
+            box.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (checkGameOver()) {
+                        // game is over
+                    } else {
+                        if (box.getDrawable() == null) {
+                            box.setImageResource(R.drawable.x);
+                            playerTwo();
+                            checkGameOver();
                         }
-
                     }
-                });
-            }
+                }
 
+            });
         }
-
     }
 
     //    Player Two's move
     public void playerTwo() {
-//      Check if game is over
-        boolean gameOver = checkGameOver();
 
-        if (gameOver) {
+        // Refer to boxes array
+        ImageView[] allBoxes = collectAllBoxes();
 
-        } else {
-            //        Indicate whose move it is
-            TextView whoseMove = findViewById(R.id.whose_move);
-            whoseMove.setText(R.string.o_s_move);
-            //        Refer to boxes array
-            ImageView[] allBoxes = collectAllBoxes();
-            for (final ImageView box : allBoxes) {
-                box.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (checkGameOver()) {
+        // Indicate whose move it is
+        TextView whoseMove = findViewById(R.id.whose_move);
+        whoseMove.setText(R.string.o_s_move);
 
-                        } else {
-                            if (box.getDrawable() == null) {
-                                box.setImageResource(R.drawable.o);
-                                playerOne();
-                            }
+        for (final ImageView box : allBoxes) {
+            box.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (checkGameOver()) {
+                        // game is over
+                    } else {
+                        if (box.getDrawable() == null) {
+                            box.setImageResource(R.drawable.o);
+                            playerOne();
+                            checkGameOver();
                         }
-
                     }
-                });
-            }
-
+                }
+            });
         }
 
     }
@@ -137,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
         // Boolean flag for which player won
         boolean playerOneWon = false;
         boolean playerTwoWon = false;
-
-
         //  Reference x and o to use for checking who won
         Drawable x = ResourcesCompat.getDrawable(getResources(), R.drawable.x, null);
         Drawable o = ResourcesCompat.getDrawable(getResources(), R.drawable.o, null);
@@ -156,24 +142,36 @@ public class MainActivity extends AppCompatActivity {
 
                     //    Figure out who won the game
                     if (line[0].getDrawable().getConstantState().equals(x.getConstantState())) {
-                        TextView whoseMove = findViewById(R.id.whose_move);
-                        whoseMove.setText(R.string.x_won);
                         playerOneWon = true;
 
+                        TextView whoseMove = findViewById(R.id.whose_move);
+                        whoseMove.setText(R.string.x_won);
+
+                        // Update scores
+                        TextView xScore = findViewById(R.id.x_wins);
+                        int newXScore = Integer.valueOf(xScore.getText().toString());
+                        newXScore += 1;
+                        xScore.setText(Integer.toString(newXScore));
+
                     } else if (line[0].getDrawable().getConstantState().equals(o.getConstantState())) {
+                        playerTwoWon = true;
+
                         TextView whoseMove = findViewById(R.id.whose_move);
                         whoseMove.setText(R.string.o_won);
-                        playerTwoWon = true;
-                    }
 
+                        // Update scores
+                        TextView oScore = findViewById(R.id.o_wins);
+                        int newOScore = Integer.valueOf(oScore.getText().toString());
+                        newOScore += 1;
+                        oScore.setText(Integer.toString(newOScore));
+                    }
                 }
             }
         }
-
-
-        // Change game game status if any of the players has won
+        // Change game game status if any of the players has won, update scores
         if (playerOneWon || playerTwoWon) {
             gameOver = true;
+
         } else {
             gameOver = checkDraw();
         }
@@ -192,11 +190,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
-
         // If no change to boolean flag, game is a draw...
         if (isADraw) {
             TextView whoseMove = findViewById(R.id.whose_move);
             whoseMove.setText(R.string.is_a_draw);
+
+            //  Update scores
+            TextView draws = findViewById(R.id.draws);
+            int newDraws = Integer.parseInt(draws.getText().toString());
+            newDraws += 1;
+            draws.setText(Integer.toString(newDraws));
         }
 
         return isADraw;
